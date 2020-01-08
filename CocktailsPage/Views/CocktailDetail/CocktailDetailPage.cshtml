@@ -1,0 +1,64 @@
+﻿@model CocktailsPage.Models.Json.Drink
+@{
+    ViewBag.Title = "CocktailDetailPage";
+}
+@using CocktailsPage.Models.Json;
+<h2>カクテル詳細</h2>
+
+@*タイトル*@
+<div class="row">
+    <h1 style="background-color:#f0f0f0">
+        @Html.DisplayNameFor(drink => drink.strDrink)
+        @Html.DisplayFor(drink => drink.strDrink) 
+    </h1>
+</div>
+
+<div class="row">
+    @* 画像*@
+    <div class="col-lg-4">
+        <img border="0" src=@Html.Encode(Model.strDrinkThumb) width="256" height="256" alt="カクテル画像">
+    </div>
+
+    
+    <div class="col-lg-8">
+        @* 成分・分量 *@
+        <div class="row">
+
+            @foreach (CocktailIngredient cocktailIngredient in ViewBag.cocktailIngredients)
+            {
+                <div class="col-sm-1 col-md-4 col-lg-3" style="background-color:#f8ffff; border-style:solid; border-width:1px;">
+                    <p>
+                        @Html.DisplayNameFor( drink => drink.strIngredient1) 
+                        @cocktailIngredient.Ingredient 
+                    </p>
+                    <p>
+                        @Html.DisplayNameFor( drink => drink.strMeasure1)
+                        @cocktailIngredient.Measure 
+                    </p>
+                </div>
+            }
+        </div>
+
+        @* グラス *@
+        <div class="row">
+            <p>
+                @Html.DisplayNameFor(drink => drink.strGlass)
+                @Html.DisplayFor(drink => drink.strGlass)
+            </p>
+        </div>
+
+        @* 説明 *@
+        <div class="row">
+
+            <p>
+                @Html.DisplayNameFor(drink => drink.strInstructions)
+            </p>
+            <p>
+                @Html.DisplayFor(drink => drink.strInstructions)
+            </p>
+
+        </div>
+
+    </div>
+</div>
+

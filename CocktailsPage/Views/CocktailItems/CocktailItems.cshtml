@@ -1,0 +1,52 @@
+﻿@*
+///
+/// ファイル名	: CocktailItems.cshtml
+/// 作成者		: murakami
+/// 制作日		: 2019/12/27
+/// 最終更新者	: なし
+/// 最終更新日	: なし
+///
+/// 更新履歴
+/// 名前			日付		内容
+/// murakami		2019/12/27	新規作成
+///
+///
+*@
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/DivOnclick.js" ></script>
+
+@using CocktailsPage.Models.Json;
+@model System.Web.Mvc.CocktailsPage.Models.CocktailSerchItem
+
+@{
+    ViewBag.Title = "検索結果一覧";
+}
+
+<h2>検索結果一覧</h2>
+
+@foreach (Drink drink in ViewBag.drinks)
+{
+    <br />
+    <div id="@drink.idDrink" class="row cocktailData">
+        <h2 style="background-color:#f0f0f0">@drink.strDrink</h2>
+        <p>
+            <img border="0" src=@drink.strDrinkThumb width="128" height="128" alt="カクテル画像">
+        </p>
+        @{ 
+            CocktailIngredient[] cocktailIngredients = drink.CocktailIngredients();
+        }
+        @foreach (CocktailIngredient cocktailIngredient in cocktailIngredients)
+        {
+            <div class="col-sm-1 col-md-4 col-lg-3" style="background-color:#f8ffff; border-style:solid; border-width:1px;">
+                <p>成分 @cocktailIngredient.Ingredient </p>
+                <p>分量 @cocktailIngredient.Measure </p>
+            </div>
+        }
+    </div>
+    
+
+
+}
+
+

@@ -1,0 +1,38 @@
+﻿@*
+///
+/// ファイル名	: MainPage.cshtml
+/// 作成者		: murakami
+/// 制作日		: 2019/12/26
+/// 最終更新者	: なし
+/// 最終更新日	: なし
+///
+/// 更新履歴
+/// 名前			日付		内容
+/// murakami		2019/12/26	新規作成
+///
+///
+*@
+
+@model System.Web.Mvc.CocktailsPage.Models.CocktailSerchItem
+@{
+    ViewBag.Title = "MainPage";
+}
+
+<h2>お酒の検索</h2>
+
+@using (Html.BeginForm())
+{
+    <div class="row">
+        @* 項目名の表示（cocktailSerchItem、指定変数のDisplayName属性により表示文言を指定している *@
+        <p>@Html.DisplayNameFor(cocktailSerchItem => cocktailSerchItem.CocktailName)</p>
+        <p>例：Margarita</p>
+        @* カクテル名の入力項目 *@
+        @Html.EditorFor(
+            cocktailSerchItem => cocktailSerchItem.CocktailName,
+            new { size = 10, maxlength = 20, @class = "col-sm-offset-1 col-sm-10 col-md-offset-3 col-md-6 col-lg-offset-3 col-lg-6" })
+
+    </div>
+
+    <input type="submit" value="検索" />
+
+}
